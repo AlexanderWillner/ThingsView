@@ -92,12 +92,12 @@
     [script release];
     todayIds = [[[NSMutableArray alloc]initWithArray:[self createTodayArray:descriptor]]autorelease];
     script = [[NSAppleScript alloc] initWithSource:@"\ntell application \"Things\"\n"
-              "set todoProperties to properties of every to do in list \"Next\"\n"
+              "set todoProperties to properties of every to do in list \"Anytime\"\n"
               "end tell\n"
               "return todoProperties\n"];
     descriptor = [script executeAndReturnError:nil];
     [script release];
-    todos = [[[NSMutableArray alloc]initWithArray:[self createTodoArray:descriptor forList:@"Next" listNumber:@"2"]]autorelease];
+    todos = [[[NSMutableArray alloc]initWithArray:[self createTodoArray:descriptor forList:@"Anytime" listNumber:@"2"]]autorelease];
     
     for (NSMutableDictionary *todo in todos){
         for (NSString *todayId in todayIds){
@@ -109,12 +109,12 @@
     }
     
     script = [[NSAppleScript alloc] initWithSource:@"\ntell application \"Things\"\n"
-              "set todoProperties to properties of every to do in list \"Scheduled\"\n"
+              "set todoProperties to properties of every to do in list \"Upcoming\"\n"
               "end tell\n"
               "return todoProperties\n"];
     descriptor = [script executeAndReturnError:nil];
     [script release];
-    [todos addObjectsFromArray:[self createTodoArray:descriptor forList:@"Scheduled" listNumber:@"3"]];
+    [todos addObjectsFromArray:[self createTodoArray:descriptor forList:@"Upcoming" listNumber:@"3"]];
     
     script = [[NSAppleScript alloc] initWithSource:@"\ntell application \"Things\"\n"
               "set todoProperties to properties of every to do in list \"Someday\"\n"
