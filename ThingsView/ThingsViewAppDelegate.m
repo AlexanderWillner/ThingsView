@@ -271,6 +271,9 @@
             thePriorityNum = @"1";   
         }
         
+        if (theName == nil) {
+            continue;
+        }
         theProjectAreaName = @"";
         theProjectAreaType = @"";
         if (theProjectID != nil){
